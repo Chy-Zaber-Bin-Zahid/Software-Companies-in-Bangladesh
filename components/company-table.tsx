@@ -5,6 +5,15 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
 import { ExternalLink, MapPin, Code, Globe, Building2, ChevronUp, ChevronDown } from "lucide-react"
 import type { Company } from "@/lib/types"
 
@@ -12,33 +21,71 @@ interface CompanyTableProps {
   companies: Company[]
 }
 
+const ITEMS_PER_PAGE = 15
+
 export function CompanyTable({ companies }: CompanyTableProps) {
-  const [sortBy, setSortBy] = useState<keyof Company>("name")
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
+  const [currentPage, setCurrentPage] = useState(1)
 
   const sortedCompanies = [...companies].sort((a, b) => {
-    const aValue = a[sortBy]
-    const bValue = b[sortBy]
-
-    if (typeof aValue === "string" && typeof bValue === "string") {
-      return sortOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue)
-    }
-
-    return 0
+    return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
   })
 
-  const handleSort = (column: keyof Company) => {
-    if (sortBy === column) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-    } else {
-      setSortBy(column)
-      setSortOrder("asc")
-    }
+  // Pagination calculations
+  const totalPages = Math.ceil(sortedCompanies.length / ITEMS_PER_PAGE)
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+  const endIndex = startIndex + ITEMS_PER_PAGE
+  const currentCompanies = sortedCompanies.slice(startIndex, endIndex)
+
+  const toggleSort = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+    setCurrentPage(1) // Reset to first page when sorting
   }
 
-  const SortIcon = ({ column }: { column: keyof Company }) => {
-    if (sortBy !== column) return null
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const SortIcon = () => {
     return sortOrder === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
+  }
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pages = []
+    const maxVisiblePages = 5
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i)
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) {
+          pages.push(i)
+        }
+        pages.push("ellipsis")
+        pages.push(totalPages)
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1)
+        pages.push("ellipsis")
+        for (let i = totalPages - 3; i <= totalPages; i++) {
+          pages.push(i)
+        }
+      } else {
+        pages.push(1)
+        pages.push("ellipsis")
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          pages.push(i)
+        }
+        pages.push("ellipsis")
+        pages.push(totalPages)
+      }
+    }
+
+    return pages
   }
 
   if (companies.length === 0) {
@@ -46,31 +93,32 @@ export function CompanyTable({ companies }: CompanyTableProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      {/* Results info */}
+      <div className="text-sm text-muted-foreground">
+        Showing {startIndex + 1}-{Math.min(endIndex, sortedCompanies.length)} of {sortedCompanies.length} companies
+        {totalPages > 1 && ` • Page ${currentPage} of ${totalPages}`}
+      </div>
+
       {/* Desktop Table View */}
       <div className="hidden lg:block">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("name")}>
+              <TableHead className="cursor-pointer hover:bg-muted/50" onClick={toggleSort}>
                 <div className="flex items-center gap-2">
                   Company Name
-                  <SortIcon column="name" />
+                  <SortIcon />
                 </div>
               </TableHead>
-              <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("location")}>
-                <div className="flex items-center gap-2">
-                  Office Location
-                  <SortIcon column="location" />
-                </div>
-              </TableHead>
+              <TableHead>Office Location</TableHead>
               <TableHead>Technologies</TableHead>
               <TableHead>Web Presence</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sortedCompanies.map((company, index) => (
-              <TableRow key={index} className="hover:bg-muted/50">
+            {currentCompanies.map((company, index) => (
+              <TableRow key={startIndex + index} className="hover:bg-muted/50">
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-2">
                     <Building2 className="h-4 w-4 text-muted-foreground" />
@@ -118,8 +166,8 @@ export function CompanyTable({ companies }: CompanyTableProps) {
 
       {/* Mobile Card View */}
       <div className="lg:hidden space-y-4">
-        {sortedCompanies.map((company, index) => (
-          <Card key={index}>
+        {currentCompanies.map((company, index) => (
+          <Card key={startIndex + index}>
             <CardContent className="p-4">
               <div className="space-y-3">
                 <div className="flex items-start justify-between">
@@ -162,6 +210,57 @@ export function CompanyTable({ companies }: CompanyTableProps) {
           </Card>
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    if (currentPage > 1) handlePageChange(currentPage - 1)
+                  }}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                />
+              </PaginationItem>
+
+              {getPageNumbers().map((page, index) => (
+                <PaginationItem key={index}>
+                  {page === "ellipsis" ? (
+                    <PaginationEllipsis />
+                  ) : (
+                    <PaginationLink
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        handlePageChange(page as number)
+                      }}
+                      isActive={currentPage === page}
+                      className="cursor-pointer"
+                    >
+                      {page}
+                    </PaginationLink>
+                  )}
+                </PaginationItem>
+              ))}
+
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    if (currentPage < totalPages) handlePageChange(currentPage + 1)
+                  }}
+                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
     </div>
   )
 }
