@@ -7,21 +7,18 @@ const mockCompanies: Company[] = [
     location: "Head Office: 4th Floor, House- 114, Road-12, Block-E, Banani, Dhaka-1213",
     technologies: ["JavaScript", "React", "WordPress"],
     website: "https://adplay.com",
-    engineers: "Please update",
   },
   {
     name: "Adventure Dhaka Limited",
     location: "Head Office: Autograph Tower, 67-68, Kemal Ataturk Avenue, Banani, 17th & 8th Floor, Dhaka, Dhaka 1213",
     technologies: ["Golang", "JAVA", "Swift", "Flutter", "Javascript", "React", "NextJS", "DevOps"],
     website: "https://adventure.com",
-    engineers: "Please update",
   },
   {
     name: "All Generation tech",
     location: "54 A 132 Road, Dhaka 1212",
     technologies: ["C#", "dotnet", "Python", "Go", "MongoDB", "Docker", "Azure", "Unqork"],
     website: "https://allgentech.com",
-    engineers: 100,
   },
   {
     name: "Anchorblock Technology",
@@ -42,21 +39,18 @@ const mockCompanies: Company[] = [
       "AWS",
     ],
     website: "https://anchorblock.com",
-    engineers: "Please update",
   },
   {
     name: "Apex DMIT",
     location: "Catharsis Tower, (6th Floor) House #133, Road #12, Block-E, Banani, Dhaka, 1213",
     technologies: ["PHP", "JavaScript", "Python", "Flutter"],
     website: "https://apexdmit.com",
-    engineers: "Please update",
   },
   {
     name: "Appnap",
     location: "Ranks Business Center (5th Floor), Ka-218/1, Progoti Sarani, Kuril, Dhaka 1229",
-    technologies: ["iOS"],
+    technologies: ["iOS", "Swift", "Objective-C", "React Native", "Flutter"],
     website: "https://appnap.com",
-    engineers: "Please update",
   },
 ]
 

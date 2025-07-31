@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { ExternalLink, MapPin, Code, Users, Globe, Building2 } from "lucide-react"
+import { ExternalLink, MapPin, Code, Globe, Building2, ChevronUp, ChevronDown } from "lucide-react"
 import type { Company } from "@/lib/types"
 
 interface CompanyTableProps {
@@ -17,20 +17,11 @@ export function CompanyTable({ companies }: CompanyTableProps) {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
 
   const sortedCompanies = [...companies].sort((a, b) => {
-    let aValue = a[sortBy]
-    let bValue = b[sortBy]
-
-    if (sortBy === "engineers") {
-      aValue = typeof aValue === "number" ? aValue : 0
-      bValue = typeof bValue === "number" ? bValue : 0
-    }
+    const aValue = a[sortBy]
+    const bValue = b[sortBy]
 
     if (typeof aValue === "string" && typeof bValue === "string") {
       return sortOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue)
-    }
-
-    if (typeof aValue === "number" && typeof bValue === "number") {
-      return sortOrder === "asc" ? aValue - bValue : bValue - aValue
     }
 
     return 0
@@ -45,6 +36,11 @@ export function CompanyTable({ companies }: CompanyTableProps) {
     }
   }
 
+  const SortIcon = ({ column }: { column: keyof Company }) => {
+    if (sortBy !== column) return null
+    return sortOrder === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
+  }
+
   if (companies.length === 0) {
     return <div className="text-center py-8 text-muted-foreground">No companies found matching your criteria.</div>
   }
@@ -57,16 +53,19 @@ export function CompanyTable({ companies }: CompanyTableProps) {
           <TableHeader>
             <TableRow>
               <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("name")}>
-                Company Name {sortBy === "name" && (sortOrder === "asc" ? "↑" : "↓")}
+                <div className="flex items-center gap-2">
+                  Company Name
+                  <SortIcon column="name" />
+                </div>
               </TableHead>
               <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("location")}>
-                Office Location {sortBy === "location" && (sortOrder === "asc" ? "↑" : "↓")}
+                <div className="flex items-center gap-2">
+                  Office Location
+                  <SortIcon column="location" />
+                </div>
               </TableHead>
               <TableHead>Technologies</TableHead>
               <TableHead>Web Presence</TableHead>
-              <TableHead className="cursor-pointer hover:bg-muted/50" onClick={() => handleSort("engineers")}>
-                Engineers {sortBy === "engineers" && (sortOrder === "asc" ? "↑" : "↓")}
-              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -86,16 +85,11 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
-                    {company.technologies.slice(0, 3).map((tech, techIndex) => (
+                    {company.technologies.map((tech, techIndex) => (
                       <Badge key={techIndex} variant="secondary" className="text-xs">
                         {tech}
                       </Badge>
                     ))}
-                    {company.technologies.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{company.technologies.length - 3} more
-                      </Badge>
-                    )}
                   </div>
                 </TableCell>
                 <TableCell>
@@ -115,14 +109,6 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                   ) : (
                     <span className="text-muted-foreground text-sm">N/A</span>
                   )}
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-muted-foreground" />
-                    <span className="font-medium">
-                      {typeof company.engineers === "number" ? `${company.engineers}+` : company.engineers}
-                    </span>
-                  </div>
                 </TableCell>
               </TableRow>
             ))}
@@ -156,13 +142,6 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                 <div className="flex items-start gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   <span>{company.location}</span>
-                </div>
-
-                <div className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-muted-foreground" />
-                  <span>
-                    {typeof company.engineers === "number" ? `${company.engineers}+ Engineers` : company.engineers}
-                  </span>
                 </div>
 
                 <div>

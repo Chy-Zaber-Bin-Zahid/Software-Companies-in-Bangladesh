@@ -3,5 +3,4 @@ export interface Company {
   location: string
   technologies: string[]
   website?: string
-  engineers: number | string
 }
