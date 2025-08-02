@@ -1363,7 +1363,7 @@ https://www.linkedin.com/company/orbitaxbd/[LinkedIn]
 {nbsp} +
 
 === Acknowledgements
-This document is based on the `README.adoc` from the "tech-companies-in-bangladesh" repository, originally created by Mossaddeque Mahmood.
+This document is based on the `README.adoc` from the "tech-companies-in-bangladesh" repository, originally created by MBSTUPC.
 
 The original work is licensed under the MIT License. Copyright (c) 2018 MBSTU Programming Community.
 You can find the original repository here: https://github.com/MBSTUPC/tech-companies-in-bangladesh
