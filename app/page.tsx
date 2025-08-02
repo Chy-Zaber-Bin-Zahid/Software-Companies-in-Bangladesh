@@ -1,47 +1,45 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search, RefreshCw } from "lucide-react"
-import { CompanyTable } from "@/components/company-table"
-import { fetchCompaniesData } from "@/lib/api"
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Search, RefreshCw, Github } from 'lucide-react';
+import { CompanyTable } from '@/components/company-table';
+import { fetchCompaniesData } from '@/lib/api';
 
 export default function HomePage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  // State to hold the timestamp, initialized to null.
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null)
-
-  // This effect runs only on the client after the component has mounted.
-  // This prevents the server and client from rendering different timestamps.
-  useEffect(() => {
-    setLastUpdated(new Date().toLocaleString())
-  }, [])
+  const [searchTerm, setSearchTerm] = useState('');
 
   const {
     data: companies = [],
     isLoading,
     error,
     isFetching,
+    dataUpdatedAt,
   } = useQuery({
-    queryKey: ["companies"],
+    queryKey: ['companies'],
     queryFn: fetchCompaniesData,
-    refetchInterval: 60 * 1000, // Refetch every minute
-    staleTime: 30 * 1000, // Consider data stale after 30 seconds
-  })
+    refetchInterval: 60 * 1000,
+    staleTime: 30 * 1000,
+  });
 
-  const filteredCompanies = companies.filter((company) => company.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredCompanies = companies.filter((company) =>
+    company.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Tech Companies in Bangladesh</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Tech Companies in Bangladesh
+          </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover and explore technology companies across Bangladesh. Find information about their locations and
-            technologies.
+            Discover and explore technology companies across Bangladesh. Find
+            information about their locations, technologies, and online presence.
           </p>
         </div>
 
@@ -77,10 +75,14 @@ export default function HomePage() {
             {isLoading ? (
               <div className="flex items-center justify-center py-8">
                 <RefreshCw className="h-8 w-8 animate-spin text-muted-foreground" />
-                <span className="ml-2 text-muted-foreground">Loading companies...</span>
+                <span className="ml-2 text-muted-foreground">
+                  Loading companies...
+                </span>
               </div>
             ) : error ? (
-              <div className="text-center py-8 text-red-600">Error loading companies data. Please try refreshing.</div>
+              <div className="text-center py-8 text-red-600">
+                Error loading companies data. Please try refreshing.
+              </div>
             ) : (
               <CompanyTable companies={filteredCompanies} />
             )}
@@ -89,23 +91,34 @@ export default function HomePage() {
 
         {/* Footer */}
         <div className="mt-12 text-center text-sm text-muted-foreground">
-          {/* Only render the 'Last updated' text when the state has been set on the client */}
-          {lastUpdated && (
-            <p>Data automatically updates every minute • Last updated: {lastUpdated}</p>
+          {dataUpdatedAt > 0 && (
+            <p>
+              Data automatically updates every minute • Last updated:{' '}
+              {new Date(dataUpdatedAt).toLocaleDateString()}
+            </p>
           )}
-          <p className="mt-2">
-            Source:{" "}
-            <a
-              href="https://github.com/Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+          <div className="pt-2">
+            <p>
+              This project is open-source. Found an issue or want to add a
+              company?
+            </p>
+            <Button
+              variant="ghost"
+              asChild
+              className="mt-1 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
             >
-              Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh
-            </a>
-          </p>
+              <a
+                href="https://github.com/Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="mr-2 h-4 w-4" />
+                Contribute on GitHub
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

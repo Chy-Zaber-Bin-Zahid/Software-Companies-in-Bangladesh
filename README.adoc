@@ -1,6 +1,6 @@
 |===
 
-| Company Name | Office location | Technologies | Web presence
+| Company Name | Office location | Technologies | Online presence
 
 |Adplay Technologies (VU Mobile)
 |Head Office: 4th Floor, House- 114, Road-12, Block-E, Banani, Dhaka-1213

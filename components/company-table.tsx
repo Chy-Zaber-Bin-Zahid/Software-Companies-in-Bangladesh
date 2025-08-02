@@ -1,10 +1,17 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useState, useEffect } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import {
   Pagination,
   PaginationContent,
@@ -13,15 +20,26 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
-import { ExternalLink, MapPin, Code, Globe, Building2, ChevronUp, ChevronDown, Facebook, Linkedin, Twitter } from "lucide-react"
-import type { Company } from "@/lib/types"
+} from '@/components/ui/pagination';
+import {
+  ExternalLink,
+  MapPin,
+  Code,
+  Globe,
+  Building2,
+  ChevronUp,
+  ChevronDown,
+  Facebook,
+  Linkedin,
+  Twitter,
+} from 'lucide-react';
+import type { Company } from '@/lib/types';
 
 interface CompanyTableProps {
-  companies: Company[]
+  companies: Company[];
 }
 
-const ITEMS_PER_PAGE = 15
+const ITEMS_PER_PAGE = 15;
 
 /**
  * Renders an icon based on the social media platform in the label.
@@ -43,87 +61,95 @@ const getLinkIcon = (label: string) => {
   return <Globe className="h-3 w-3" />;
 };
 
-
 export function CompanyTable({ companies }: CompanyTableProps) {
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
-  const [currentPage, setCurrentPage] = useState(1)
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // This effect resets the current page to 1 whenever the list of companies changes (e.g., due to searching).
   // This ensures that search results are always displayed starting from the first page.
   useEffect(() => {
-    setCurrentPage(1)
-  }, [companies])
+    setCurrentPage(1);
+  }, [companies]);
 
   const sortedCompanies = [...companies].sort((a, b) => {
-    return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-  })
+    return sortOrder === 'asc'
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name);
+  });
 
   // Pagination calculations
-  const totalPages = Math.ceil(sortedCompanies.length / ITEMS_PER_PAGE)
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-  const endIndex = startIndex + ITEMS_PER_PAGE
-  const currentCompanies = sortedCompanies.slice(startIndex, endIndex)
+  const totalPages = Math.ceil(sortedCompanies.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentCompanies = sortedCompanies.slice(startIndex, endIndex);
 
   const toggleSort = () => {
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-    setCurrentPage(1) // Reset to first page when sorting
-  }
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    setCurrentPage(1); // Reset to first page when sorting
+  };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    // Scroll to top when page changes
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    setCurrentPage(page);
+  };
 
   const SortIcon = () => {
-    return sortOrder === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
-  }
+    return sortOrder === 'asc' ? (
+      <ChevronUp className="h-4 w-4" />
+    ) : (
+      <ChevronDown className="h-4 w-4" />
+    );
+  };
 
   // Generate page numbers for pagination
   const getPageNumbers = () => {
-    const pages = []
-    const maxVisiblePages = 5
+    const pages = [];
+    const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
       for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
+        pages.push(i);
       }
     } else {
       if (currentPage <= 3) {
         for (let i = 1; i <= 4; i++) {
-          pages.push(i)
+          pages.push(i);
         }
-        pages.push("ellipsis")
-        pages.push(totalPages)
+        pages.push('ellipsis');
+        pages.push(totalPages);
       } else if (currentPage >= totalPages - 2) {
-        pages.push(1)
-        pages.push("ellipsis")
+        pages.push(1);
+        pages.push('ellipsis');
         for (let i = totalPages - 3; i <= totalPages; i++) {
-          pages.push(i)
+          pages.push(i);
         }
       } else {
-        pages.push(1)
-        pages.push("ellipsis")
+        pages.push(1);
+        pages.push('ellipsis');
         for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-          pages.push(i)
+          pages.push(i);
         }
-        pages.push("ellipsis")
-        pages.push(totalPages)
+        pages.push('ellipsis');
+        pages.push(totalPages);
       }
     }
 
-    return pages
-  }
+    return pages;
+  };
 
   if (companies.length === 0) {
-    return <div className="text-center py-8 text-muted-foreground">No companies found matching your criteria.</div>
+    return (
+      <div className="text-center py-8 text-muted-foreground">
+        No companies found matching your criteria.
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6">
       {/* Results info */}
       <div className="text-sm text-muted-foreground">
-        Showing {startIndex + 1}-{Math.min(endIndex, sortedCompanies.length)} of {sortedCompanies.length} companies
+        Showing {startIndex + 1}-{Math.min(endIndex, sortedCompanies.length)} of{' '}
+        {sortedCompanies.length} companies
         {totalPages > 1 && ` • Page ${currentPage} of ${totalPages}`}
       </div>
 
@@ -132,12 +158,17 @@ export function CompanyTable({ companies }: CompanyTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="cursor-pointer hover:bg-muted/50" onClick={toggleSort}>
-                <div className="flex items-center gap-2">Company Name <SortIcon /></div>
+              <TableHead
+                className="cursor-pointer hover:bg-muted/50"
+                onClick={toggleSort}
+              >
+                <div className="flex items-center gap-2">
+                  Company Name <SortIcon />
+                </div>
               </TableHead>
               <TableHead>Office Location</TableHead>
               <TableHead>Technologies</TableHead>
-              <TableHead>Web Presence</TableHead>
+              <TableHead>Online Presence</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -158,25 +189,41 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
                     {company.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">{tech}</Badge>
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="text-xs"
+                      >
+                        {tech}
+                      </Badge>
                     ))}
                   </div>
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-2">
-                  {company.websites.length > 0 ? (
-                    company.websites.map((site, siteIndex) => (
-                      <Button key={siteIndex} variant="outline" size="sm" asChild>
-                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          {getLinkIcon(site.label)}
-                          {site.label}
-                          <ExternalLink className="h-3 w-3" />
-                        </a>
-                      </Button>
-                    ))
-                  ) : (
-                    <span className="text-muted-foreground text-sm">N/A</span>
-                  )}
+                    {company.websites.length > 0 ? (
+                      company.websites.map((site, siteIndex) => (
+                        <Button
+                          key={siteIndex}
+                          variant="outline"
+                          size="sm"
+                          asChild
+                        >
+                          <a
+                            href={site.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2"
+                          >
+                            {getLinkIcon(site.label)}
+                            {site.label}
+                            <ExternalLink className="h-3 w-3" />
+                          </a>
+                        </Button>
+                      ))
+                    ) : (
+                      <span className="text-muted-foreground text-sm">N/A</span>
+                    )}
                   </div>
                 </TableCell>
               </TableRow>
@@ -191,19 +238,29 @@ export function CompanyTable({ companies }: CompanyTableProps) {
           <Card key={startIndex + index}>
             <CardContent className="p-4">
               <div className="space-y-3">
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col items-start justify-start gap-2">
                   <h3 className="font-semibold text-lg">{company.name}</h3>
-                   <div className="flex flex-col items-end space-y-2">
+                  <div className="flex gap-2 items-end space-y-2 flex-wrap">
                     {company.websites.map((site, siteIndex) => (
-                        <Button key={siteIndex} variant="outline" size="sm" asChild>
-                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                            {getLinkIcon(site.label)}
-                            {site.label}
-                            <ExternalLink className="h-3 w-3" />
+                      <Button
+                        key={siteIndex}
+                        variant="outline"
+                        size="sm"
+                        asChild
+                      >
+                        <a
+                          href={site.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          {getLinkIcon(site.label)}
+                          {site.label}
+                          <ExternalLink className="h-3 w-3" />
                         </a>
-                        </Button>
+                      </Button>
                     ))}
-                    </div>
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -218,7 +275,13 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {company.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">{tech}</Badge>
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="text-xs"
+                      >
+                        {tech}
+                      </Badge>
                     ))}
                   </div>
                 </div>
@@ -230,33 +293,33 @@ export function CompanyTable({ companies }: CompanyTableProps) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center pt-6">
+        <div className="flex justify-center pt-6 px-2 sm:px-4 md:px-6">
           <Pagination>
-            <PaginationContent>
+            <PaginationContent className="flex flex-wrap justify-center gap-2">
               <PaginationItem>
                 <PaginationPrevious
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault()
-                    if (currentPage > 1) handlePageChange(currentPage - 1)
+                    e.preventDefault();
+                    if (currentPage > 1) handlePageChange(currentPage - 1);
                   }}
-                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  className={`${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'} text-xs sm:text-sm`}
                 />
               </PaginationItem>
 
               {getPageNumbers().map((page, index) => (
                 <PaginationItem key={index}>
-                  {page === "ellipsis" ? (
+                  {page === 'ellipsis' ? (
                     <PaginationEllipsis />
                   ) : (
                     <PaginationLink
                       href="#"
                       onClick={(e) => {
-                        e.preventDefault()
-                        handlePageChange(page as number)
+                        e.preventDefault();
+                        handlePageChange(page as number);
                       }}
                       isActive={currentPage === page}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-xs sm:text-sm"
                     >
                       {page}
                     </PaginationLink>
@@ -268,10 +331,11 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                 <PaginationNext
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault()
-                    if (currentPage < totalPages) handlePageChange(currentPage + 1)
+                    e.preventDefault();
+                    if (currentPage < totalPages)
+                      handlePageChange(currentPage + 1);
                   }}
-                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                  className={`${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'} text-xs sm:text-sm`}
                 />
               </PaginationItem>
             </PaginationContent>
@@ -279,5 +343,5 @@ export function CompanyTable({ companies }: CompanyTableProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
