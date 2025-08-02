@@ -2,5 +2,8 @@ export interface Company {
   name: string
   location: string
   technologies: string[]
-  website?: string
+  websites: {
+    url: string;
+    label: string;
+  }[];
 }

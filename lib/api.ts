@@ -1,81 +1,80 @@
 import type { Company } from "./types"
 
-// Mock data based on the table structure you provided
-const mockCompanies: Company[] = [
-  {
-    name: "Adplay Technologies (VU Mobile)",
-    location: "Head Office: 4th Floor, House- 114, Road-12, Block-E, Banani, Dhaka-1213",
-    technologies: ["JavaScript", "React", "WordPress"],
-    website: "https://adplay.com",
-  },
-  {
-    name: "Adventure Dhaka Limited",
-    location: "Head Office: Autograph Tower, 67-68, Kemal Ataturk Avenue, Banani, 17th & 8th Floor, Dhaka, Dhaka 1213",
-    technologies: ["Golang", "JAVA", "Swift", "Flutter", "Javascript", "React", "NextJS", "DevOps"],
-    website: "https://adventure.com",
-  },
-  {
-    name: "All Generation tech",
-    location: "54 A 132 Road, Dhaka 1212",
-    technologies: ["C#", "dotnet", "Python", "Go", "MongoDB", "Docker", "Azure", "Unqork"],
-    website: "https://allgentech.com",
-  },
-  {
-    name: "Anchorblock Technology",
-    location: "Block C House, 57 Rd Number 4, Dhaka 1213",
-    technologies: [
-      "JavaScript",
-      "Python",
-      "ReactJS",
-      "NodeJS",
-      "NestJS",
-      "Django",
-      "Hyperledger Fabric",
-      "Flutter",
-      "Android",
-      "Solidity",
-      "Smart Contact",
-      "Machine Learning",
-      "AWS",
-    ],
-    website: "https://anchorblock.com",
-  },
-  {
-    name: "Apex DMIT",
-    location: "Catharsis Tower, (6th Floor) House #133, Road #12, Block-E, Banani, Dhaka, 1213",
-    technologies: ["PHP", "JavaScript", "Python", "Flutter"],
-    website: "https://apexdmit.com",
-  },
-  {
-    name: "Appnap",
-    location: "Ranks Business Center (5th Floor), Ka-218/1, Progoti Sarani, Kuril, Dhaka 1229",
-    technologies: ["iOS", "Swift", "Objective-C", "React Native", "Flutter"],
-    website: "https://appnap.com",
-  },
-]
+/**
+ * Parses the string content of the Readme.adoc file into an array of Company objects.
+ * This version handles companies with multiple website links on separate lines.
+ * @param content The raw string content of the .adoc file.
+ * @returns An array of Company objects.
+ */
+function parseReadmeContent(content: string): Company[] {
+  const lines = content.split('\n');
+  const companies: Company[] = [];
+  // Filter for lines that are part of the table, excluding the start/end markers and the header.
+  const tableLines = lines.filter(line => line.trim().startsWith('|') && !line.includes('===') && !line.includes('Company Name'));
 
-export async function fetchCompaniesData(): Promise<Company[]> {
-  try {
-    // In a real implementation, you would fetch from the GitHub API
-    // const response = await fetch('https://api.github.com/repos/MBSTUPC/tech-companies-in-bangladesh/contents/README.md')
-    // const data = await response.json()
-    // const content = atob(data.content)
-    // Parse the markdown content and extract company data
+  let i = 0;
+  while (i < tableLines.length) {
+    // A company entry must have at least a name, location, and tech line.
+    if (i + 2 >= tableLines.length) break;
 
-    // For now, return mock data with a delay to simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const name = tableLines[i]?.substring(1).trim();
+    const location = tableLines[i + 1]?.substring(1).trim();
+    const technologies = tableLines[i + 2]?.substring(1).split(',').map(tech => tech.trim()).filter(Boolean);
+    
+    // After getting the main info, advance the index.
+    i += 3;
 
-    return mockCompanies
-  } catch (error) {
-    console.error("Error fetching companies data:", error)
-    // Return mock data as fallback
-    return mockCompanies
+    const websites: Company['websites'] = [];
+    
+    // Now, loop through subsequent lines to find all associated web links.
+    // A line is considered a web link if it contains the AsciiDoc link format.
+    while (i < tableLines.length && tableLines[i].includes('http')) {
+      const websiteLine = tableLines[i];
+      const websiteMatches = [...websiteLine.matchAll(/(https?:\/\/[^\[]+)\[([^\]]+)\]/g)];
+      
+      for (const match of websiteMatches) {
+        websites.push({
+          url: match[1],
+          label: match[2],
+        });
+      }
+      i++;
+    }
+
+
+    if (name) {
+      companies.push({
+        name,
+        location,
+        technologies,
+        websites,
+      });
+    }
   }
+  return companies;
 }
 
-// Function to parse README content (you would implement this based on the actual format)
-export function parseReadmeContent(content: string): Company[] {
-  // This would parse the markdown table and extract company information
-  // Implementation depends on the exact format of the README
-  return mockCompanies
+
+/**
+ * Fetches the company data directly from the raw GitHub Readme.adoc file.
+ * This function is called directly from the client-side component.
+ */
+export async function fetchCompaniesData(): Promise<Company[]> {
+  const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh/main/README.adoc'
+
+  try {
+    const res = await fetch(GITHUB_RAW_URL)
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    }
+    const content = await res.text()
+
+    const companies = parseReadmeContent(content)
+    console.log("Successfully parsed companies:", companies.length, companies)
+    return companies
+  } catch (error) {
+    console.error("Error fetching companies data:", error)
+    throw error;
+  }
 }

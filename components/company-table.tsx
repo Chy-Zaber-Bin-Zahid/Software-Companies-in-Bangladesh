@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,7 +14,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import { ExternalLink, MapPin, Code, Globe, Building2, ChevronUp, ChevronDown } from "lucide-react"
+import { ExternalLink, MapPin, Code, Globe, Building2, ChevronUp, ChevronDown, Facebook, Linkedin, Twitter } from "lucide-react"
 import type { Company } from "@/lib/types"
 
 interface CompanyTableProps {
@@ -23,9 +23,36 @@ interface CompanyTableProps {
 
 const ITEMS_PER_PAGE = 15
 
+/**
+ * Renders an icon based on the social media platform in the label.
+ * @param label The label of the website link (e.g., "Website", "Facebook").
+ * @returns A Lucide React icon component.
+ */
+const getLinkIcon = (label: string) => {
+  const lowerLabel = label.toLowerCase();
+  if (lowerLabel.includes('facebook')) {
+    return <Facebook className="h-3 w-3" />;
+  }
+  if (lowerLabel.includes('linkedin')) {
+    return <Linkedin className="h-3 w-3" />;
+  }
+  if (lowerLabel.includes('twitter')) {
+    return <Twitter className="h-3 w-3" />;
+  }
+  // Default icon for general websites.
+  return <Globe className="h-3 w-3" />;
+};
+
+
 export function CompanyTable({ companies }: CompanyTableProps) {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc")
   const [currentPage, setCurrentPage] = useState(1)
+
+  // This effect resets the current page to 1 whenever the list of companies changes (e.g., due to searching).
+  // This ensures that search results are always displayed starting from the first page.
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [companies])
 
   const sortedCompanies = [...companies].sort((a, b) => {
     return sortOrder === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
@@ -106,10 +133,7 @@ export function CompanyTable({ companies }: CompanyTableProps) {
           <TableHeader>
             <TableRow>
               <TableHead className="cursor-pointer hover:bg-muted/50" onClick={toggleSort}>
-                <div className="flex items-center gap-2">
-                  Company Name
-                  <SortIcon />
-                </div>
+                <div className="flex items-center gap-2">Company Name <SortIcon /></div>
               </TableHead>
               <TableHead>Office Location</TableHead>
               <TableHead>Technologies</TableHead>
@@ -134,29 +158,26 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
                     {company.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
+                      <Badge key={techIndex} variant="secondary" className="text-xs">{tech}</Badge>
                     ))}
                   </div>
                 </TableCell>
                 <TableCell>
-                  {company.website ? (
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={company.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <Globe className="h-3 w-3" />
-                        Website
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </Button>
+                  <div className="flex flex-wrap gap-2">
+                  {company.websites.length > 0 ? (
+                    company.websites.map((site, siteIndex) => (
+                      <Button key={siteIndex} variant="outline" size="sm" asChild>
+                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          {getLinkIcon(site.label)}
+                          {site.label}
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    ))
                   ) : (
                     <span className="text-muted-foreground text-sm">N/A</span>
                   )}
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
@@ -172,19 +193,17 @@ export function CompanyTable({ companies }: CompanyTableProps) {
               <div className="space-y-3">
                 <div className="flex items-start justify-between">
                   <h3 className="font-semibold text-lg">{company.name}</h3>
-                  {company.website && (
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={company.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1"
-                      >
-                        <Globe className="h-3 w-3" />
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </Button>
-                  )}
+                   <div className="flex flex-col items-end space-y-2">
+                    {company.websites.map((site, siteIndex) => (
+                        <Button key={siteIndex} variant="outline" size="sm" asChild>
+                        <a href={site.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                            {getLinkIcon(site.label)}
+                            {site.label}
+                            <ExternalLink className="h-3 w-3" />
+                        </a>
+                        </Button>
+                    ))}
+                    </div>
                 </div>
 
                 <div className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -199,9 +218,7 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {company.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
+                      <Badge key={techIndex} variant="secondary" className="text-xs">{tech}</Badge>
                     ))}
                   </div>
                 </div>
@@ -213,7 +230,7 @@ export function CompanyTable({ companies }: CompanyTableProps) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-6">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
