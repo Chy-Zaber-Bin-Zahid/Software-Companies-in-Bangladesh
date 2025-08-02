@@ -1,3 +1,24 @@
+= Tech Companies in Bangladesh
+
+A list of tech companies in Bangladesh to help developers find job opportunities.
+
+=== How to Contribute
+
+We welcome contributions to this list! If you would like to add a new company or update information, please follow these steps:
+
+1.  **Fork the Repository:** Click the 'Fork' button at the top right of this page to create your own copy of this project.
+
+2.  **Make Your Changes:** In your forked repository, edit the `README.adoc` file. Add the new company's details into the table, making sure to maintain the existing format of the table.
+
+3.  **Commit Your Changes:** Save your changes with a clear and descriptive commit message.
+
+4.  **Create a Pull Request:** Return to your forked repository on GitHub and click the 'Contribute' button, then 'Open pull request'. This will propose your changes to be added to the main list.
+
+Your contribution will be reviewed, and once approved, it will be merged into the project. Thank you for helping to keep this list up-to-date!
+
+{nbsp} +
+{nbsp} +
+
 |===
 
 | Company Name | Office location | Technologies | Online presence
@@ -1337,3 +1358,18 @@ https://www.linkedin.com/company/orbitaxbd/[LinkedIn]
 |https://www.upaybd.com/[Website]
 
 |===
+
+{nbsp} +
+{nbsp} +
+
+=== Acknowledgements
+This document is based on the `README.adoc` from the "tech-companies-in-bangladesh" repository, originally created by Mossaddeque Mahmood.
+
+The original work is licensed under the MIT License. Copyright (c) 2018 MBSTU Programming Community.
+You can find the original repository here: https://github.com/MBSTUPC/tech-companies-in-bangladesh
+
+=== Contribute
+Contributions are always welcome! Create a pull request.
+
+=== Copyright & License
+Licensed under the MIT License, see the link:LICENSE[LICENSE] file for details.

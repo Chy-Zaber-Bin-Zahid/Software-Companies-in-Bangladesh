@@ -73,7 +73,7 @@ function parseReadmeContent(content: string): Company[] {
 
 export async function fetchCompaniesData(): Promise<Company[]> {
   const GITHUB_RAW_URL =
-    'https://raw.githubusercontent.com/Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh/main/README.adoc';
+    'https://raw.githubusercontent.com/Chy-Zaber-Bin-Zahid/Tech-Companies-in-Bangladesh/main/README.adoc';
 
   try {
     const res = await fetch(GITHUB_RAW_URL, { cache: 'no-store' });

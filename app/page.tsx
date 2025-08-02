@@ -108,7 +108,7 @@ export default function HomePage() {
               className="mt-1 text-blue-600 hover:bg-blue-50 hover:text-blue-700"
             >
               <a
-                href="https://github.com/Chy-Zaber-Bin-Zahid/Software-Companies-in-Bangladesh"
+                href="https://github.com/Chy-Zaber-Bin-Zahid/Tech-Companies-in-Bangladesh"
                 target="_blank"
                 rel="noopener noreferrer"
               >
