@@ -1,3 +1,7 @@
+|===
+
+| Company Name | Office location | Technologies | Web presence
+
 |Adplay Technologies (VU Mobile)
 |Head Office: 4th Floor, House- 114, Road-12, Block-E, Banani, Dhaka-1213
 |JavaScript, React, WordPress
@@ -37,6 +41,7 @@
 |Flat A2, House 4, Rd No. 10, Dhaka 1230
 |Golang, Docker, Kubernetes, Vue.js
 |https://www.appscode.com/[Website]
+https://www.linkedin.com/company/appscode/[LinkedIn]
 
 
 |Appstick
@@ -68,12 +73,17 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Sel Rose N Dale, 116 Kazi Nazrul Islam Ave, Dhaka – 1205, Bangladesh.
 |C#, dotnet, Java, Spring Boot, JavaScript, React, Vue.js, Angular, HTML5, CSS, UI/UX, Flutter, Android, AWS, Docker, Kubernetes, Selenium, Testsigma, GO
 |https://www.asthait.com/[Website]
+https://www.linkedin.com/company/asthait/[LinkedIn]
+https://www.facebook.com/asthait[Facebook]
+https://twitter.com/AsthaIT[Twitter]
 
 
 |ATI Limited
 |ATI Center, House-07, Gareeb-e-Nawaz Avenue, Sector-11, Uttara, Dhaka, Bangladesh
 |C#, PHP, dotnet, Java, JavaFX, Spring Boot, JavaScript, React, Vue.js, HTML5, CSS, UI/UX, Flutter, Android, AWS, Docker 
 |https://atilimited.net/[Website]
+https://www.linkedin.com/company/atilimited/[LinkedIn]
+https://www.facebook.com/ATI.LIMITED/[Facebook] 
 
 
 |Augmedix Inc.
@@ -140,17 +150,21 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |House: 295, Road: 19/B, Mohakhali DOHS, Dhaka-1206
 |Android, Java, Go, Javascript, AngularJS, NodeJS
 |https://www.braincraftapps.com[Website]
+https://www.linkedin.com/company/bracits/[LinkedIn]
 
 
 |Brain Station 23 PLC
 |8th floor, Plot 2, Amtoli, Bir Uttam AK Khandakar Rd Mohakhali Commercial Area, Dhaka-1212
 |Android, IOS, React, React-Native, Odoo, Xamarin, .Net, PHP, Python, Java, AEM, Sitecore, Flutter
 |http://www.brainstation-23.com/[Website]
+https://www.linkedin.com/company/brain-station-23-plc/[LinkedIn]
+
 
 |BJIT Ltd.
 |House-07, Road-2/C, Block-J, Baridhara, Dhaka-1212, Bangladesh
 |Java, JEE, Groovy, PHP, C#, Android, iOS, IoT, Fintech, AI
 |http://bjitgroup.com[Website]
+https://www.linkedin.com/company/bjit/[LinkedIn]
 
 
 |Brotecs Technologies Ltd (USA)
@@ -181,18 +195,22 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Khulna, Bangladesh.
 |JavaScript, Node.js, Python, React, Redux, Java, Spring Boot, Postgres, PHP
 |https://codeprophet.tech/[Website]
+https://www.linkedin.com/company/code-prophet[LinkedIn]
 
 
 |CodersTrust
 |House-82, Road-19/A, Block-E, Banani, Dhaka-1213, Bangladesh
 |Wordpress, PHP, Javascript/Typescript, Python, Scala, Kubernetes, Lambda, AWS
 |https://coderstrust.global/[Website]
+https://www.facebook.com/Coderstrust[Facebook]
 
 
 |Craftsmen (EU)
 |House 272 (1st Floor), Lane 3 (Eastern Road), DOHS Baridhara, Dhaka 1206, Bangladesh.
 |JavaScript/TypeScript, Node.js, Python, React/Vue.js, Redux, React Native, AWS, Serverless Framework, AI/Machine Learning, GCP, Azure, IBM Watson
 |https://www.craftsmenltd.com/[Website]
+https://www.linkedin.com/organization-guest/company/craftsmenltd[LinkedIn]
+https://www.facebook.com/craftsmenltd/[Facebook]
 
 
 |Cefalo Bangladesh
@@ -204,13 +222,15 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Chaldal Engineering
 |House 6, Road 9, Block C, Banani
 |.NET, F#, C#, SQL Server, TypeScript, JavaScript, Xamarin, Android, React, React Native, Microsoft Orleans
-|https://chaldal.tech/[Engineering and Career Website]
+|https://chaldal.tech/[Website]
 
 
 |Chumbok IT
-|_Remote_
+|Remote
 |Java, Spring Boot, Data JPA / Hibernate, AngularJS
 |https://chumbok.com[Website]
+https://www.facebook.com/ChumbokIT[Facebook]
+https://www.linkedin.com/company/chumbok-it[LinkedIn]
 
 
 |COdesign
@@ -276,6 +296,7 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Sara Aftab Tower (11th floor), 29 Ring Road, Shyamoli, Dhaka 1207
 |Java, Spring Boot, Javascript, React, NextJs, Android, IOS, Flutter
 |https://dhrubokinfotech.com/[Website]
+https://www.linkedin.com/company/dhrubokinfotech/[LinkedIn]
 
 |Divine IT Limited
 |House 29, Road 12, Sector 10, Uttara, Dhaka-1230
@@ -311,6 +332,8 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |House 177, Lane 2, New DOHS Mohakhali, Dhaka 1206, Bangladesh
 |Java, Springboot, Nodejs(hapi), Hibernate, ReactJs, NextJs, AngularJS, Android, iOS
 |http://www.dsinnovators.com[Website]
+https://www.linkedin.com/company/dsinnovators/[LinkedIn]
+https://www.facebook.com/DynamicSolutionInnovators/[Facebook]
 
 
 |Dohatec New Media
@@ -336,12 +359,10 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Java
 |http://www.escenic.com/[Website]
 
-
 |E Soft Limited
 |Rangs Babylonia, Level 7, 246, Bir Uttam Mir Shawkat Road, Tejgaon I/A, Tejgaon, Dhaka-1208
 |Python, FastApi, Streamlit, PostgreSQL, Docker, Linux
 |https://www.linkedin.com/company/esoftlimited/[LinkedIn]
-
 
 |Evaly Limited
 |House 8, Road 14, Dhanmondi, Dhaka-1209
@@ -359,6 +380,8 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Fareast Tower, Level 3, 35 Topkhana Road, Dhaka-1000, Bangladesh
 |Core Banking, Islamic Banking, Micro-finance, ERP, HR & Payroll, AI/ML, IoT, RPA, Web Applications, SQL, Oracle, .NET, Java, Python
 |https://www.erainfotechbd.com/[Website]
+https://www.linkedin.com/company/era-infotech-ltd/posts/[LinkedIn]
+https://www.linkedin.com/company/era-infotech-ltd/posts/[Facebook]
 
 
 |Fieldbuzz (Germany)
@@ -453,13 +476,11 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |BSCIC Electronics Complex Level-8, Plot-1/1 Road Number 3, Mirpur-11, Dhaka 1216
 |C#, dotnet.
 |https://www.hawarit.com/career-at-hawarit/[Website]
-|30+
 
 |Hogarth Dhaka
 |Road 11, House 76/A [3rd Floor], Banani, Dhaka, Dhaka 1213, BD
 |JavaScript, HTML, CSS, React, Node, AWS
 |https://www.hogarth.com/careers[Website]
-|100+
 
 |HypeScout
 |Banani, Road 2/1, Dhaka-1212.
@@ -602,6 +623,7 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |House No. 283, Road No. 19/C, Mohakhali DOHS, Dhaka, Bangladesh
 |Swift, React, Kotline, PyTorch
 |https://www.kitegamesstudio.com[Website]
+https://www.linkedin.com/company/kite-games-studio/mycompany[LinkedIn]
 
 
 |Kona Software Lab
@@ -614,6 +636,8 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |Flat 2A, House 118, Road 2, Block A Niketan, Gulshan, Dhaka-1212, Bangladesh
 |Web Development, Mobile Development
 |https://hellokompass.com/[Website]
+https://www.linkedin.com/company/kompass-technologies-limited/posts/?feedView=all[LinkedIn]
+https://www.facebook.com/hellokompass[Facebook]
 
 
 |Kovair Software, Inc.
@@ -640,6 +664,8 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 |3rd Floor, House-7, Road-23/B, Gulshan-1, Dhaka, Bangladesh
 |Mobile app development, Web Design & Development, Digital Marketing, Analytics
 |http://magnitodigital.com/[Website]
+https://www.facebook.com/magnitodigital[Facebook]
+https://www.linkedin.com/company/magnito-digital/[LinkedIn]
 
 
 |Mazegeek Technologies BD Ltd.
@@ -653,6 +679,8 @@ https://www.linkedin.com/company/apurba-technologies-ltd[LinkedIn]
 _USA Office:_ 54w 40th St, We Work Space-Medina Tech Limited, New York, NY 10018, USA
 |Python, Node.js, Django, PHP, React, Next.js, Vue, AI, Machine Learning, Unity, AR, Android, IOS, React Native, AWS
 |https://www.medinatech.co//[Website]
+https://www.facebook.com/medinatech.co/[Facebook]
+https://www.linkedin.com/company/medina-tech/[LinkedIn]
 
 
 |Metafour Asia
@@ -665,6 +693,7 @@ _USA Office:_ 54w 40th St, We Work Space-Medina Tech Limited, New York, NY 10018
 |Mark Mansion (Level 4 & 5), 36 Sonargaon Janapath, Sector 9, Uttara, Dhaka – 1230
 |Java, JavaScript, Angular, .NET, AWS
 |https://www.fellowdigitals.com/metatude[Website]
+https://www.linkedin.com/company/metatude-asia-ltd/[LinkedIn]
 
 
 |Mevrik Ltd.
@@ -672,6 +701,9 @@ _USA Office:_ 54w 40th St, We Work Space-Medina Tech Limited, New York, NY 10018
 _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Python, Django, FastAPI, PHP, Laravel, JavaScript, React, Tailwind CSS, AWS, Docker, Kubernetes, LLM, Redis, Kafka, Clickhouse, MySQL, PostgreSQL, MongoDB, Elasticsearch, Celery, Nginx, Gunicorn, GitHub
 |https://www.mevrik.com/[Website]
+https://www.linkedin.com/company/mevrik/[LinkedIn]
+https://twitter.com/mevrikdcx[Twitter]
+https://www.facebook.com/mevrikdcx[Facebook]
 
 
 |Millennium Information Solution Ltd.
@@ -690,13 +722,11 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Plot No. 5, Paragon House, Dhaka 1212
 |Java Spring, Laravel, Symfony, NextJS, NestJS, Flutter, Amazon Web Services
 |https://monstar-lab.com/bd/[Website]
-|20-30
 
 |MononSoft Ltd. (A Concern of JMI Group)
 |TMC Building (6th Floor),52 New Eskaton Road, Dhaka 1000.
 |PHP, Laravel, Oracle, RESTful APIs, VueJS
 |https://mononsoft.org/[Website]
-|30
 
 |Namespace IT
 |Lift 4, House 13, Road 11, Sector 11, Uttara, Dhaka
@@ -767,7 +797,8 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Nova Labs LTD
 |Level 8B, House 10 (Fairview), Road-1, Block-B, Niketon.
 |Unity (Android, IOS), Unreal (PC, Android, IOS), AR (Meta Spark)
-|https://novalabs.gg/[Website] https://www.linkedin.com/company/novalabsgg[LinkedIn] 
+|https://novalabs.gg/[Website]
+https://www.linkedin.com/company/novalabsgg[LinkedIn] 
 
 
 |Nybbles System Limited (NybSys)
@@ -780,12 +811,14 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |443/444, Dumni, Khilkhet, Dhaka, Bangladesh
 |Themeum, Joomshaper, Icofont
 |https://www.ollyo.com[Website]
+https://www.linkedin.com/company/ollyo/[LinkedIn]
 
 
 |Optimizely (formerly Newscred) (USA)
 |Green Grandeur (4th ,10th and 13th floor), Plot 58/E, Kemal Ataturk Avenue, Dhaka
 |Python, NodeJS, Angular2, Scala, MongoDB
 |https://www.optimizely.com/[Website]
+https://www.linkedin.com/company/optimizely/[LinkedIn]
 
 
 |Orbund LLC
@@ -906,6 +939,7 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |House 5, MIDAS Center, Secure Link Services BD Ltd, Rd No. 27, Dhaka 1209
 |Android, IOS, AngularJS, NodeJS, Python, .Net
 |https://selisegroup.com/[Website]
+https://www.linkedin.com/company/selise/[LinkedIn]
 
 
 |ServicEngine Ltd.
@@ -972,6 +1006,7 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |7B, 23/25,Section:12, Pallabi, Mirpur 12, Dhaka,Bangladesh. 01758561131
 |Flutter, Surrealdb, Android, iOS, Unity, Go, JavaScript, PHP, MySQL, WordPress 
 |https://softlh.com[Website]
+https://www.linkedin.com/company/91137876/[Linkedin]
 
 |Softzino Technologies
 |House-50, Level-04, Road-03, Sector-11, Uttara, Dhaka-1230
@@ -989,12 +1024,15 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Dhaka Square, Plot 1, Road 13, Sector 1, Uttara, Dhaka 1230
 |.Net, Java Spring, Android, AngularJS, Visual Basic
 |https://www.southtechgroup.com/[Website]
+https://www.linkedin.com/company/southtechgroup/[LinkedIn]
 
 
 |SovWare
 |139, TPL Complex, Signboard, Narayanganj
 |PHP, Laravel, WordPress, JavaScript, ReactJS, Flutter
 |https://www.sovware.com/[Website]
+https://www.linkedin.com/company/sovware/[LinkedIn]
+
 
 |SSL Wireless
 |93 B, New Eskaton Road, Dhaka-1000, Bangladesh
@@ -1006,12 +1044,6 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |House 18, Road 13, Uttara (Sector 7) Dhaka 1230, Bangladesh
 |Java, Angular, React, Android
 |https://career.squarehealth.com.bd/[Website]
-
-
-|SoftBD Ltd.
-|8th, 11th & 13th Floor, 52/1 Hasan Holdings, New Eskaton Road
-|Unknown
-|https://softbdltd.com/[Website]
 
 
 |Systems Solutions & Development Technologies Ltd. (SSD-TECH)
@@ -1043,12 +1075,10 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |.NET, C#, Java, J2EE, Spring, PHP, Laravel, CodeIgniter, WordPress, MySQL, PostgreSQL, SQL Server, Oracle, HTML, SCSS, LESS, jQuery, VueJS, Android, Ionic
 |https://technovista.com.bd/[Website]
 
-
 |Telcobright Limited
 |Venus Complex (Level 5), Middle Badda, Dhaka-1212, Bangladesh
 |Java, Springboot, C#, .Net, JavaScript(React), Android
 |https://www.linkedin.com/company/telcobright-limited/[LinkedIn] https://www.facebook.com/telcobright[Facebook]
-
 
 |ThemeXpert
 |Level-12, Suite-1202, SEL HUQ SKYPARK, 23/2 Mirpur Road, Dhaka 1207.
@@ -1060,12 +1090,14 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |House 47, Road 4, Block C, Banani, Dhaka 1213
 |Java, J2EE
 |https://therap.recruiterbox.com/[Website]
+https://www.linkedin.com/company/therapbd/[LinkedIn]
 
 
 |TigerIT Bangladesh Ltd.
 |House 21, Road 28, Block-K, Banani Model Town, Dhaka, 1213, Bangladesh
 |Java
 |http://www.tigerit.com/[Website]
+https://www.linkedin.com/company/tigerit-bangladesh-limited/[LinkedIn]
 
 |TimeTackle (US)
 |Remote from Bangladesh
@@ -1076,14 +1108,14 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |TechCare
 |450/A, Road 6A, Avenue 6, Mirpur DOHS, Dhaka 1216, Bangladesh
 |Android, Java, Node
-|https://www.techcarebd.com/[Website] https://www.facebook.com/techcarebd/[Facebook]
+|https://www.techcarebd.com/[Website]
+https://www.facebook.com/techcarebd/[Facebook]
 
 
 |Technext Limited
 |Dhaka Branch : 1/C Shyamoli Rd 1, Dhaka 1216 , Sylhet Branch : Medical Road, Kajolshah, Sylhet - 3100, Bangladesh. (google maps : 24°54'02.9"N 91°51'20.0"E)
 |HTML, CSS, JavaScript, Bootstrap , React , Next.js , .net core
 |https://technext.it/[Website]
-|67
 
 |TechFlix
 |6100, Rajshahi
@@ -1114,12 +1146,15 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |6th Floor, Dynasty Tower, Begum Rokeya Avenue, Mirpur 11, Dhaka, Bangladesh
 |Java, PHP, AngularJS
 |https://www.vantage.com/[Website]
+https://www.facebook.com/VantageLabsDhaka/[Facebook]
 
 
 |Vivasoft Limited
 |Floor 16, Ahmed Tower, 28, 30, Kemal Ataturk Ave, Banani, Dhaka 1213
 |Java, C#, React.js, GoLang, Python, Flutter
 |https://www.vivasoftltd.com/[Website]
+https://www.facebook.com/VivasoftLtd[Facebook]
+https://www.linkedin.com/company/vivasoftltd/[LinkedIn]
 
 
 |Wafi Solutions.
@@ -1144,6 +1179,7 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |546/2 Rd No 13, Baridhara, Dhaka
 |Ruby on Rails, Android, iOS, ReactJS
 |https://www.welldev.io/[Website]
+https://www.linkedin.com/company/welldevintl/[LinkedIn]
 
 
 
@@ -1205,8 +1241,6 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |House 15, Block G, Road 3/A, Dhaka 1219, Bangladesh
 |Figma, Java, Socket, Docker, React, Next Js, Node Js, Mongo DB, AWS
 |https://6sensehq.com/[Website]
-|15-20
-
 
 |bkash
 |Shadhinata Tower, 1, Bir Sreshtha Shaheed Jahangir Gate, Dhaka Cantonment, Dhaka-1206
@@ -1230,12 +1264,16 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Silver Tower (Level 12), 52 Gulshan Avenue, Circle-1, Dhaka-1212, Bangladesh
 |Java, Python
 |https://www.ipay.com.bd/[Website]
+https://www.linkedin.com/company/ipay-systems-ltd./[LinkedIn]
+https://www.facebook.com/iPayBangladesh/[Facebook]
 
 
 |LightCastle Partners
 |Level 5, House 10/12, Road 1, Block B, Niketan, Gulshan 1, Dhaka 1212, Bangladesh
 |PHP, Laravel, JavaScript, React, Node, Data Analysis
 |https://www.lightcastlebd.com[Website]
+https://www.linkedin.com/company/me-solshare/[Linkedin]
+https://www.facebook.com/mesolshare/[Facebook]
 
 
 |ME SOLshare Ltd.
@@ -1266,6 +1304,7 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |113 Kazi Nazrul Islam Ave, Dhaka 1205
 |Java, JavaScript, Android, PHP
 |http://www.orbitax.com/[Website]
+https://www.linkedin.com/company/orbitaxbd/[LinkedIn]
 
 
 |ShareTrip
@@ -1296,3 +1335,5 @@ _UK Office:_ 71-75 Shelton Street, Covent Garden, London, England, WC2H 9JQ
 |Level 16, Plot-CWS(A)-1, Road-34, Gulshan Avenue, Dhaka-1212, Dhaka, 1212, Bangladesh
 |Blockchain, Python, Django, Flask, JavaScript, React, Node, Android, iOS
 |https://www.upaybd.com/[Website]
+
+|===
