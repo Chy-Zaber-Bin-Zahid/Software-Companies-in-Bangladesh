@@ -1,16 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, RefreshCw, Github } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@/components/ui/popover';
+import {
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+} from '@/components/ui/command';
+import { Search, RefreshCw, Github, ChevronDown, X, Check } from 'lucide-react';
 import { CompanyTable } from '@/components/company-table';
 import { fetchCompaniesData } from '@/lib/api';
+import { cn } from '@/lib/utils';
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    []
+  );
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const {
     data: companies = [],
@@ -25,9 +44,38 @@ export default function HomePage() {
     staleTime: 30 * 1000,
   });
 
-  const filteredCompanies = companies.filter((company) =>
-    company.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const allTechnologies = useMemo(() => {
+    const techSet = new Set<string>();
+    companies.forEach((company) => {
+      company.technologies.forEach((tech) => techSet.add(tech));
+    });
+    return Array.from(techSet).sort();
+  }, [companies]);
+
+  const filteredCompanies = companies.filter((company) => {
+    const searchTermLower = searchTerm.toLowerCase();
+    const nameMatch = company.name.toLowerCase().includes(searchTermLower);
+    const locationMatch = company.location.toLowerCase().includes(searchTermLower);
+
+    const technologyMatch =
+      selectedTechnologies.length === 0 ||
+      selectedTechnologies.every((selectedTech) =>
+        company.technologies.some(
+          (companyTech) =>
+            companyTech.toLowerCase() === selectedTech.toLowerCase()
+        )
+      );
+
+    return (nameMatch || locationMatch) && technologyMatch;
+  });
+
+  const handleTechnologyToggle = (technology: string) => {
+    setSelectedTechnologies((prev) =>
+      prev.includes(technology)
+        ? prev.filter((t) => t !== technology)
+        : [...prev, technology]
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -43,26 +91,100 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Search */}
+        {/* Search and Filters */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Search className="h-5 w-5" />
-              Search Companies
+              Filter Companies
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-4">
-              <div className="relative flex-1">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="md:col-span-2 relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search companies by name..."
+                  placeholder="Search by name or location..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
                 />
               </div>
+              <div>
+                <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-between"
+                    >
+                      <span>
+                        {selectedTechnologies.length > 0
+                          ? `${selectedTechnologies.length} technologies selected`
+                          : 'Select Technologies'}
+                      </span>
+                      <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-full md:w-[250px] p-0"
+                    align="start"
+                  >
+                    <Command>
+                      <CommandInput placeholder="Search technology..." />
+                      <CommandList>
+                        <CommandEmpty>No results found.</CommandEmpty>
+                        <CommandGroup>
+                          {allTechnologies.map((tech) => {
+                            const isSelected =
+                              selectedTechnologies.includes(tech);
+                            return (
+                              <CommandItem
+                                key={tech}
+                                onSelect={() => handleTechnologyToggle(tech)}
+                              >
+                                <div
+                                  className={cn(
+                                    'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                                    isSelected
+                                      ? 'bg-primary text-primary-foreground'
+                                      : 'opacity-50 [&_svg]:invisible'
+                                  )}
+                                >
+                                  <Check className={cn('h-4 w-4')} />
+                                </div>
+                                <span>{tech}</span>
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
+            {selectedTechnologies.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {selectedTechnologies.map((tech) => (
+                  <Badge key={tech} variant="secondary">
+                    {tech}
+                    <button
+                      onClick={() => handleTechnologyToggle(tech)}
+                      className="ml-2 rounded-full hover:bg-muted-foreground/20 p-0.5"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </Badge>
+                ))}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSelectedTechnologies([])}
+                >
+                  Clear all
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
 
