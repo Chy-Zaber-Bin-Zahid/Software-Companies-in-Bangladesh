@@ -55,7 +55,9 @@ export default function HomePage() {
   const filteredCompanies = companies.filter((company) => {
     const searchTermLower = searchTerm.toLowerCase();
     const nameMatch = company.name.toLowerCase().includes(searchTermLower);
-    const locationMatch = company.location.toLowerCase().includes(searchTermLower);
+    const locationMatch = company.location
+      .toLowerCase()
+      .includes(searchTermLower);
 
     const technologyMatch =
       selectedTechnologies.length === 0 ||
@@ -80,18 +82,29 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
+        <div className="relative text-center mb-8">
+          <div className="absolute top-0 right-0">
+            <Button variant="ghost" size="icon" asChild>
+              <a
+                href="https://github.com/Chy-Zaber-Bin-Zahid/Tech-Companies-in-Bangladesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View on GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </Button>
+          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Tech Companies in Bangladesh
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover and explore technology companies across Bangladesh. Find
-            information about their locations, technologies, and online presence.
+            information about their locations, technologies, and online
+            presence.
           </p>
         </div>
 
-        {/* Search and Filters */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -202,7 +215,6 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        {/* Company Table */}
         <Card>
           <CardHeader>
             <CardTitle>Companies Directory</CardTitle>
@@ -225,7 +237,6 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        {/* Footer */}
         <div className="mt-12 text-center text-sm text-muted-foreground">
           {dataUpdatedAt > 0 && (
             <p>
