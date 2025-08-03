@@ -83,7 +83,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
         <div className="relative text-center mb-8">
-          <div className="absolute top-0 right-0">
+          <div className="absolute top-0 right-0 hidden md:block">
             <Button variant="ghost" size="icon" asChild>
               <a
                 href="https://github.com/Chy-Zaber-Bin-Zahid/Tech-Companies-in-Bangladesh"
