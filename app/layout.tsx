@@ -8,8 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Tech Companies in Bangladesh',
-  description: 'Discover and explore technology companies across Bangladesh',
-  generator: 'v0.dev',
+  description: 'Discover and explore tech companies across Bangladesh',
 };
 
 export default function RootLayout({

@@ -34,6 +34,7 @@ import {
   Twitter,
 } from 'lucide-react';
 import type { Company } from '@/lib/types';
+import { getTechColor } from '@/lib/utils';
 
 interface CompanyTableProps {
   companies: Company[];
@@ -191,8 +192,8 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                     {company.technologies.map((tech, techIndex) => (
                       <Badge
                         key={techIndex}
-                        variant="secondary"
-                        className="text-xs"
+                        variant="outline"
+                        className={`text-xs ${getTechColor(tech)}`}
                       >
                         {tech}
                       </Badge>
@@ -277,8 +278,8 @@ export function CompanyTable({ companies }: CompanyTableProps) {
                     {company.technologies.map((tech, techIndex) => (
                       <Badge
                         key={techIndex}
-                        variant="secondary"
-                        className="text-xs"
+                        variant="outline"
+                        className={`text-xs ${getTechColor(tech)}`}
                       >
                         {tech}
                       </Badge>

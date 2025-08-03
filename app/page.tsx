@@ -22,7 +22,7 @@ import {
 import { Search, RefreshCw, Github, ChevronDown, X, Check } from 'lucide-react';
 import { CompanyTable } from '@/components/company-table';
 import { fetchCompaniesData } from '@/lib/api';
-import { cn } from '@/lib/utils';
+import { cn, getTechColor } from '@/lib/utils';
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -164,13 +164,17 @@ export default function HomePage() {
               </div>
             </div>
             {selectedTechnologies.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap items-center gap-2">
                 {selectedTechnologies.map((tech) => (
-                  <Badge key={tech} variant="secondary">
+                  <Badge
+                    key={tech}
+                    variant="outline"
+                    className={getTechColor(tech)}
+                  >
                     {tech}
                     <button
                       onClick={() => handleTechnologyToggle(tech)}
-                      className="ml-2 rounded-full hover:bg-muted-foreground/20 p-0.5"
+                      className="ml-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 p-0.5"
                     >
                       <X className="h-3 w-3" />
                     </button>
@@ -216,7 +220,7 @@ export default function HomePage() {
           {dataUpdatedAt > 0 && (
             <p>
               Data automatically updates every minute • Last updated:{' '}
-              {new Date(dataUpdatedAt).toLocaleDateString()}
+              {new Date(dataUpdatedAt).toLocaleTimeString()}
             </p>
           )}
           <div className="pt-2">
