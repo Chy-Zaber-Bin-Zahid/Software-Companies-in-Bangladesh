@@ -102,13 +102,23 @@ export default function HomePage() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="md:col-span-2 relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search by name or location..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 pr-10"
                 />
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full text-muted-foreground hover:text-foreground"
+                    aria-label="Clear search"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
               </div>
               <div>
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -221,7 +231,6 @@ export default function HomePage() {
             <p>
               Data automatically updates every minute • Last updated:{' '}
               {new Date(dataUpdatedAt).toLocaleDateString('en-US', {
-                day: 'numeric',
                 month: 'long',
                 year: 'numeric',
               })}
