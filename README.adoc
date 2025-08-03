@@ -1357,6 +1357,12 @@ https://www.linkedin.com/company/orbitaxbd/[LinkedIn]
 |Blockchain, Python, Django, Flask, JavaScript, React, Node, Android, iOS
 |https://www.upaybd.com/[Website]
 
+
+|Zero Byte
+|4th Floor, TB Clinic Mor, Jessore, Bangladesh
+|Django, Express, React, NextJS, Kotlin, Flutter, Postgres, Redis, Celery
+|https://zero-byte.xyz/[Website]
+
 |===
 
 {nbsp} +
