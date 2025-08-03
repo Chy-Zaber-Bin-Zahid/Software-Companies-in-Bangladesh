@@ -59,7 +59,7 @@ export default function HomePage() {
 
     const technologyMatch =
       selectedTechnologies.length === 0 ||
-      selectedTechnologies.every((selectedTech) =>
+      selectedTechnologies.some((selectedTech) =>
         company.technologies.some(
           (companyTech) =>
             companyTech.toLowerCase() === selectedTech.toLowerCase()
