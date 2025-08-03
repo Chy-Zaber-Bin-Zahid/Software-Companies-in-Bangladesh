@@ -76,7 +76,9 @@ export async function fetchCompaniesData(): Promise<Company[]> {
     'https://raw.githubusercontent.com/Chy-Zaber-Bin-Zahid/Tech-Companies-in-Bangladesh/main/README.adoc';
 
   try {
-    const res = await fetch(GITHUB_RAW_URL, { cache: 'no-store' });
+    const urlWithCacheBuster = `${GITHUB_RAW_URL}?t=${new Date().getTime()}`;
+
+    const res = await fetch(urlWithCacheBuster, { cache: 'no-store' });
 
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);

@@ -220,7 +220,11 @@ export default function HomePage() {
           {dataUpdatedAt > 0 && (
             <p>
               Data automatically updates every minute • Last updated:{' '}
-              {new Date(dataUpdatedAt).toLocaleTimeString()}
+              {new Date(dataUpdatedAt).toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
             </p>
           )}
           <div className="pt-2">
